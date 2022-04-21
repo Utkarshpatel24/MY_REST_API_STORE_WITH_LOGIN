@@ -1,0 +1,33 @@
+<body>
+    <div class="container-fluid">
+        <div for="form">
+            <form action="" method="POST">
+                <div>
+                    <label for="products_display">Select Product</label>
+
+                    <select name="product_id" id="product">
+                        
+                        <?php echo $dropdown_d ?>
+                    </select>
+                    <label for="products_variation_display">Select Product Variation</label>
+
+                    <select name="product_variation" id="product_variation">
+                        
+                        <?php echo $dropdown_d ?>
+                    </select>
+
+                    <input type="text" name="c_name" value="Enter_ Name">
+                    <label>Enter Quantity<input type="number" name="p_quantity"></label>
+                </div>
+                <button class="btn btn-info" type="submit">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</body>
+
+<?php
+echo "<pre>";
+print_r($postdata);
+?>

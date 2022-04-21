@@ -1,0 +1,57 @@
+<body>
+    <div class="container-fluid">
+        <div class="mt-5 w-75 m-auto  border d-flex flex-column  ">
+            <p class="fs-1 text-center ">Add Products Here</p>
+            <form class="d-flex flex-column text-center" action="/products/insert" method="POST">
+                <label>Product Name <input type="text" name="p_name"></label>
+                <label>Product Category <input type="text" name="p_category"></label>
+                <label>Product Price<input type="text" name="p_price"></label>
+                <label>Product Stock<input type="text" name="p_stock"></label>
+                <h1>Meta Fields</h1>
+                <div class="d-flex justify-content-around">
+                    <p>
+                        <ion-icon name="add-circle-outline" size="large" id="plus" onclick=add()></ion-icon>
+                    </p>
+                    <p>
+                        <ion-icon name="remove-circle-outline" size="large" id="subtract" onclick=subtract()></ion-icon>
+                    </p>
+                </div>
+
+                <div id="additionalFields" class="text-center">
+
+                </div>
+                <h1>Variations</h1>
+                <div class="d-flex justify-content-around">
+                    <p>
+                        <ion-icon name="add-circle-outline" size="large" id="plus" onclick=addVariationField()></ion-icon>
+                    </p>
+                    <p>
+                        <ion-icon name="remove-circle-outline" size="large" id="subtract" onclick=subtractVariationField()></ion-icon>
+                    </p>
+                </div>
+
+                <div id="variationFields" class="text-center d-flex  flex-column">
+
+                </div>
+                <div id="exact-meta-count" style="display: none;">
+                    <!-- <input type="number" name="metaCount" value=""> -->
+                    <!-- <input type="number" name="variationCount" value=""> -->
+
+                </div>
+                <div id="exact-variation-count" style="display: none;">
+
+                </div>
+                <div id="exact-v-f-count" style="display: none;">
+
+                </div>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+
+    </div>
+   
+</body>
+
+<?php
+$this->assets->outputjs();
+?>
