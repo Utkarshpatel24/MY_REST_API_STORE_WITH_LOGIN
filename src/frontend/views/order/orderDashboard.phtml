@@ -1,0 +1,93 @@
+<body>
+    <div class="container-fluid">
+        <form action="" method="">
+            <div class="mt-5 d-flex ">
+                <p class="p-3 fw-bolder"><a href="/">Home</a></p>
+                <p class="p-2 d-flex w-100">
+                    <input class="w-100 rounded-pill text-center " type="text" name="searchValue" value="search Here !!!">
+                    <button class="btn btn-primary rounded-pill" type="submit"> Search</button>
+                </p>
+                <p class="p-3 fw-bolder">Signout</p>
+                <p class="p-3 fw-bolder">Signin</p>
+            </div>
+        </form>
+        <div class="d-flex">
+            <a class="btn btn-info" href="#">Show Order List</a>
+            <a class="btn btn-info ml-1" href="/order/placeOrder">Place Order</a>
+            <a class="btn btn-info ml-1" href="/order/orderDashboard/0">Reset</a>
+
+        </div>
+        <div for="apply filters" id="filters">
+            <form action="/order/orderDashboard/<?php echo $check ?>" method="POST">
+                <label for="order_status">Choose Order Status</label>
+
+                <select name="order_status" id="order_status">
+                    <option value="placed">Placed</option>
+                    <option value="paid">Paid</option>
+                    <option value="processing">Processing</option>
+                    <option value="dispatched">Dispatched</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="refunded">Refunded</option>
+
+
+                </select>
+                <label for="order_date">Choose Order Date</label>
+
+                <select name="order_date" id="order_date" style="display: <?php echo $d_drop; ?>;">
+                    <option value="today">Today</option>
+                    <option value="this week">This week</option>
+                    <option value="this month">This month</option>
+                </select>
+                <a href="/order/orderDashboard/1" class="" style="display: <?php echo $d_drop; ?>;">Enter Custom Date</a>
+                <input type="date" name="date_from" style="display: <?php echo $d_cust; ?>;">
+                <input type="date" name="date_to" style="display: <?php echo $d_cust; ?>;">
+                <button id="btn-submit">Filter</button>
+            </form>
+        </div>
+        <div for="filter result">
+            <table class="table table-success table-striped">
+                <thead>
+                    <th>
+                        ID
+                    </th>
+                    <th>Product Id</th>
+                    <th>Customer Name</th>
+                    <th>Quantity</th>
+                    <th>status</th>
+                    <th>Date</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $d = "";
+                    if (count($pp) > 0) {
+                        foreach ($pp as $p) {
+
+                            $d .= "<tr>
+                            <td>" . $p['_id']['$oid'] . "</td>
+                            <td>" . $p['product_id'] . "</td>
+                            <td>" . $p['c_name'] . "</td>
+                            <td>" . $p['p_quantity'] . "</td>
+                            <td>" . $p['status'] . "</td>
+                            <td>" . $p['date']['$date']['$numberLong'] . "</td>
+                            </tr>";
+                        }
+                    }
+                    echo $d;
+                    ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+
+
+
+<?php
+echo "<pre>";
+print_r($postdata);
+$this->assets->outputjs();
+echo $d_drop;
+echo $d_cust;
+print_r($pp)
+?>

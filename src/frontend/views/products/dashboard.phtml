@@ -1,0 +1,56 @@
+<body class="conatiner-fluild">
+  <form action="/products/dashboard" method="POST">
+    <div class="mt-5 d-flex ">
+      <p class="p-3 fw-bolder"><a href="/products/dashboard">Home</a></p>
+      <p class="p-2 d-flex w-100">
+        <input class="w-100 rounded-pill text-center " type="text" name="searchValue" value="search Here !!!">
+        <button class="btn btn-primary rounded-pill" type="submit"> Search</button>
+      </p>
+      <p class="p-3 fw-bolder">Signout</p>
+      <p class="p-3 fw-bolder">Signin</p>
+    </div>
+  </form>
+  <div class="d-flex">
+      <a class="btn btn-info" href="/products/index" >Add Product</a> 
+      <a class="btn btn-info ml-1" href="/order/placeOrder" >Place Order</a>
+      <a class="btn btn-info ml-1" href="/order/orderDashboard/0" >View Orders</a> 
+
+  </div>
+
+  <div class="d-flex row" id="result">
+
+    <?php echo $displayResult; ?>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Additional Information </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Meta Data</h1>
+          <div id="popupMetaBody">
+          </div>
+          <h1>Variation Data</h1>
+          <div id="popupVariationBody">
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+<?php
+$this->assets->outputjs();
+?>
