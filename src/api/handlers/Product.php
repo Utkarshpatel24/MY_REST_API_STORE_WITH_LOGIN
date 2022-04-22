@@ -22,7 +22,9 @@ class Product extends Controller
         To get list of all product Hit this end point '<strong>/api/products/get'</strong><br>
         To search products hit this end point '<strong>/api/products/search/{name}</strong><br>
         To Place Order Hit this end point '<strong>/api/placeOrder</strong>'<br>
+            Form params keys will be 'token' 'p_quantity' 'product_id' <br>
         To Update Order Hit this end point '<strong>/api/updateOrder</strong>'<br>
+            Form params keys will be 'order_id'  'status'
         ";
     }
 
