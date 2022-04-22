@@ -52,9 +52,15 @@ class UserController extends Controller
                 if ($result['role'] == 'admin') {
                     $this->response->redirect("/products/dashboard");
                 } else {
-                    $this->response->redirect('/api/intro');
+                    // $this->response->redirect('/api/intro');
+                    $this->response->redirect('/user/viewToken?token='.$result['token']);
+                   
                 }
             }
         }
+    }
+    public function viewTokenAction()
+    {
+        $this->view->token = $this->request->getQuery('token');
     }
 }

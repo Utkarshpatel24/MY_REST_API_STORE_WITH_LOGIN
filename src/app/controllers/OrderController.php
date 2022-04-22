@@ -8,7 +8,7 @@ class OrderController extends Controller
     {
         // $this->assets->addJs("js/productJs.js");
         // $postdata = $this->request->getPost();
-
+        // echo "ggse";
     }
 
     public function placeOrderAction()

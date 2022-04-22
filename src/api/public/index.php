@@ -105,7 +105,7 @@ $app->put(
 
 $app->before(
     function() use ($app) {
-        if ($_SERVER["REQUEST_URI"] != '/api/intro') {
+        if ($_SERVER["REQUEST_URI"] != '/api/intro' && $_SERVER['REQUEST_URI'] != '/api/getToken/admin' && $_SERVER['REQUEST_URI'] != '/api/getToken/customer') {
 
             $firewall = new \API\MiddleWare\FireWall();
             $header = $app->request->getHeaders();
