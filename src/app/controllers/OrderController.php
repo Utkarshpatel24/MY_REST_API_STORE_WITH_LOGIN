@@ -6,9 +6,6 @@ class OrderController extends Controller
 {
     public function indexAction()
     {
-        // $this->assets->addJs("js/productJs.js");
-        // $postdata = $this->request->getPost();
-        // echo "ggse";
     }
 
     public function placeOrderAction()
@@ -22,13 +19,9 @@ class OrderController extends Controller
         foreach ($results as $result) {
             $result = json_decode(json_encode($result), 1);
             $dropdown_d .= '<option value="' . $result['_id']['$oid'] . '">' . $result['name'] . '</option>';
-            // echo "<pre>";
-            // print_r($result);
+          
         }
 
-        // foreach
-
-        // die;
         $this->view->dropdown_d = $dropdown_d;
         if (count($postdata) > 0) {
             $postdata = array_merge($postdata, ["status" => "placed"]);
@@ -75,7 +68,13 @@ class OrderController extends Controller
                 }
             }
             
-            $this->view->pp = json_decode(json_encode($result->toArray()), 1) ;
+            $this->view->pp = json_decode(json_encode($result->toArray()), 1);
+        } else {
+            $result = $order->search();
+            echo "<pre>";
+            // print_r($result->toArray());
+            // die;
+            $this->view->pp = json_decode(json_encode($result->toArray()), 1);
         }
         $this->view->postdata =  $postdata;
         $this->view->check = $check;
@@ -85,7 +84,6 @@ class OrderController extends Controller
     {
         
         $postdata = $this->request->getPost();
-        print_r($postdata);
         $order = new Orders;
         if ($postdata['date_from'] != "") {
             $result = $order->search($postdata["order_status"], $postdata["date_from"], $postdata["date_to"]);
@@ -101,15 +99,7 @@ class OrderController extends Controller
                 $result = $order->search($postdata["order_status"], date("Y-m-d", strtotime("first day of this month")), date("Y-m-d", strtotime("last day of this month")));
             }
         }
-        // $order = new Orders;
-        // $result = $order->search("placed", "2022-04-16", "2022-04-20");
-        // // var_dump($result);
-        echo "<pre>";
-        print_r($result->toArray());
-        // foreach ($result as $r) {
-        //     print_r(json_decode(json_encode($r), 1));
-        //     // echo json_encode($r);
-        // }
-        // echo $result;
+       
     }
+    
 }

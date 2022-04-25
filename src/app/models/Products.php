@@ -17,6 +17,7 @@ class Products extends Model
     {
 
         $insert = $this->collection->insertOne($productData);
+        return $insert;
             
     }
     public function search($name = [])
@@ -39,4 +40,18 @@ class Products extends Model
     {
         return $this->collection->deleteOne(['_id'=>(new ObjectId($id))]);
     }
+    public function updateProduct($id, $stock)
+    {
+        // return $this->collection->update(['_id'=>(new ObjectId($id))], ['$set'=>['stock'=>$stock]]);
+        $this->collection->updateOne(
+            [
+                '_id' => new ObjectId($id)
+            ],
+            [
+                '$set' => ["stock" => $stock]
+            ]
+        );
+        return $this->collection->find(['_id'=>(new ObjectId($id))]);
+    }
+    
 }

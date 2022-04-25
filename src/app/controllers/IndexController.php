@@ -6,7 +6,6 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        // $this->response->redirect("/products/dashboard");
         $this->response->redirect("/user/login");
     }
    

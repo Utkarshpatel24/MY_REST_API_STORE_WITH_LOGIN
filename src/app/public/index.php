@@ -8,6 +8,9 @@ use Phalcon\Url;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Config;
 use Phalcon\Mvc\Micro;
+use Phalcon\Events\Event;
+use Phalcon\Events\Manager as EventsManager;
+use API\Webhook\Webhook;
 
 $config = new Config([]);
 
@@ -25,15 +28,16 @@ $loader->registerDirs(
     [
         APP_PATH . "/controllers/",
         APP_PATH . "/models/",
+        APP_PATH . "/listeners/"
     ]
 );
 
-// $loader->registerNamespaces(
-//     [
-//         'API\Handler' => '../handlers/',
-//         'API\MiddleWare' => '../middleware/'
-//     ]
-// );
+$loader->registerNamespaces(
+    [
+        'API\Webhook' => '../listener/',
+        // 'API\MiddleWare' => '../middleware/'
+    ]
+);
 
 
 $loader->register();
@@ -126,6 +130,17 @@ $container->set(
 //     }
 // );
 
+$eventsManager = new EventsManager();
+$container->set(
+    "eventsManager",
+    function () use ($eventsManager) {
+        $eventsManager->attach(
+            'webhookEvent',
+            new Webhook()
+        );
+        return $eventsManager;
+    }
+);
 
 
 
